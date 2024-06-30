@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Subscription } from 'rxjs';
 
 import { TeamService } from './team.service';
@@ -7,30 +7,25 @@ import { TeamService } from './team.service';
 @Component({
   selector: 'app-team',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, NgIf],
   templateUrl: './team.component.html',
   styleUrl: './team.component.css'
 })
-export class TeamComponent implements OnInit, OnDestroy {
-  teamProfileInfo: any;
-  private subscription: Subscription | null = null;
 
-  constructor(private teamService: TeamService) { }
+export class TeamComponent implements OnInit, OnDestroy {
+  private subscription: Subscription | null = null;
+  public splashPaths: Array<string> = []
+
+  constructor(public teamService: TeamService) { }
 
   ngOnInit(): void {
-    this.fetchTeamProfileInformation();
-  }
+    this.teamService.fetchTeamMembers();
 
-  public fetchTeamProfileInformation(): void {
-    this.subscription = this.teamService.getTeamProfileInformation().subscribe({
-      next: data => {
-        this.teamProfileInfo = data;
-        console.log('Team Profile Information: ', this.teamProfileInfo);
-      },
-      error: error => {
-        console.error('Error fetching team profile information', error);
+    this.teamService.teamSplash.forEach(obj => {
+      for (const key in obj) {
+        this.splashPaths.push(obj[key])
       }
-    });
+    })
   }
 
   ngOnDestroy(): void {

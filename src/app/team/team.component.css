@@ -1,0 +1,9 @@
+.player-card-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.player-card {
+  max-height: 1000px;
+  max-width: 150px;
+}

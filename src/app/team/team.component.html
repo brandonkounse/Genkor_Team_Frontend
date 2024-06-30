@@ -1,4 +1,14 @@
 <div>
-  <ul>
-  </ul>
+  <ng-container *ngIf="teamService.teamMembers.length > 0">
+    <ul class="player-card-container">
+      <!-- <li *ngFor="let splash of teamService.teamSplash">
+        <div *ngFor="let name of getKeys(member)">
+          <img [src]="getSplashImagePath(name)" alt="" class="player-card">
+        </div>
+      </li> -->
+      <li *ngFor="let splash of splashPaths">
+        <img [src]="splash" alt="" class="player-card">
+      </li>
+    </ul>
+  </ng-container>
 </div>
