@@ -2,9 +2,11 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 
+import { environment } from "../../environments/environment";
+
 @Injectable({ providedIn: 'root' })
 export class TeamService {
-  private apiUrl: string = 'http://localhost:3000'
+  private apiUrl: string = environment.apiUrl;
   public teamMembers: any[] = [];
   public teamSplash: any[] = [
     { "Kounse": "/assets/images/kounse.png" },
