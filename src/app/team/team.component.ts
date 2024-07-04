@@ -13,19 +13,19 @@ import { TeamService } from './team.service';
 })
 
 export class TeamComponent implements OnInit, OnDestroy {
-  private subscription: Subscription | null = null;
-  public splashPaths: Array<string> = []
+  public teamMembers: any[] = [];
+  public splashPaths: string[] = []
+  public subscription: Subscription | null = null;
 
   constructor(public teamService: TeamService) { }
 
   ngOnInit(): void {
-    this.teamService.fetchTeamMembers();
+    this.subscription = this.teamService.getTeamMembers().subscribe({
+      next: (members) => this.teamMembers = members,
+      error: (e) => console.error('Error fetching team members: ', e)
+    });
 
-    this.teamService.teamSplash.forEach(obj => {
-      for (const key in obj) {
-        this.splashPaths.push(obj[key])
-      }
-    })
+    this.splashPaths = this.teamService.teamSplash.flatMap(obj => Object.values(obj));
   }
 
   ngOnDestroy(): void {
