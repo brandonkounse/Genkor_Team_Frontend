@@ -22,7 +22,7 @@ export class TeamService {
   constructor(private http: HttpClient) { }
 
   public getTeamMembers(): Observable<TeamMember[]> {
-    return this.http.get<TeamMember[]>(`${this.apiUrl}/team/members`).pipe(
+    return this.http.get<TeamMember[]>(`${this.apiUrl}/team_members`).pipe(
       map(members => members.map(member => ({
         ...member,
         splash: this.teamSplash[member.name] || `No splash found for ${member.name}`
