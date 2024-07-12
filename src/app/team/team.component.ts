@@ -27,7 +27,6 @@ export class TeamComponent implements OnInit, OnDestroy {
       next: (members) => this.teamMembers = members,
       error: (e) => console.error('Error fetching team members: ', e)
     });
-    console.log(this.teamMembers)
   }
 
   ngOnDestroy(): void {
