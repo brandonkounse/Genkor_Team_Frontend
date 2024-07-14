@@ -23,5 +23,5 @@ nav li:not(:last-child)::after {
 }
 
 hr {
-  border-top: 2px solid darkred;
+  border: 0.5px solid darkred;
 }
