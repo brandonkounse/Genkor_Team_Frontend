@@ -10,6 +10,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html,
@@ -25,11 +26,7 @@ ul {
   list-style-type: none;
 }
 
-app-root {
-  display: block;
-  height: 100vh;
-}
-
-.debug {
-  border: 1px solid red;
+img {
+  max-width: 100%;
+  height: auto;
 }

@@ -1,12 +1,14 @@
 <div class="site-container">
   <app-header></app-header>
-  <img [src]="bannerImagePath" alt="Banner Image">
-  <app-highlights></app-highlights>
-  <app-team></app-team>
-  <footer style="text-align: center;">
-    <div>
-      <div>Developed by Brandon Kounse</div>
-      <div>Design by Alex Strogen</div>
-    </div>
-  </footer>
+  <div class="nested-site-container">
+    <img [src]="bannerImagePath" alt="Banner Image">
+    <app-highlights class=""></app-highlights>
+    <app-team></app-team>
+    <footer style="text-align: center;">
+      <div>
+        <div>Developed by Brandon Kounse</div>
+        <div>Design by Alex Strogen</div>
+      </div>
+    </footer>
+  </div>
 </div>

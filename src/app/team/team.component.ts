@@ -17,6 +17,7 @@ export class TeamComponent implements OnInit, OnDestroy {
   @ViewChildren(PlayerComponent) playerComponents!: QueryList<PlayerComponent>;
   public teamMembers: any[] = [];
   public splashPaths: string[] = []
+  public teamImagePath: string = '../../assets/images/the_team.png'
   public subscription: Subscription | null = null;
   public selectedPlayerIndex: number | null = null;
 

@@ -1,4 +1,5 @@
 <div>
+  <img [src]="teamImagePath" alt="">
   <ng-container *ngIf="teamMembers.length > 0">
     <ul class="player-card-container">
       <li *ngFor="let member of teamMembers; let i = index">
