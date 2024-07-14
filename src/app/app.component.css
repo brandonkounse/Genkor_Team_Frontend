@@ -1,15 +1,19 @@
 .site-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  gap: 1rem;
 }
 
 .nested-site-container {
   display: flex;
   flex-direction: column;
+  align-self: center;
   width: 90%;
   max-width: 90%;
-  margin: 0.5rem auto;
-  align-items: stretch;
   gap: 2rem;
+}
+
+footer {
+  margin-top: 10rem;
+  text-align: center;
 }
