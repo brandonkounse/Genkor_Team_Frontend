@@ -1,0 +1,27 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1em 2em;
+}
+
+.header-logo {
+  height: 40px;
+}
+
+.links-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+nav li:not(:last-child)::after {
+  content: "X";
+  color: darkred;
+  margin-left: 1em;
+}
+
+hr {
+  border-top: 2px solid darkred;
+}
