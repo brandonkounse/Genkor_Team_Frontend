@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './highlights.component.css'
 })
 export class HighlightsComponent {
-
+  public highlightsImagePath: string = '../../assets/images/highlights.png'
+  public mediaPlaceholderImagePath: string = '../../assets/images/media_window.png'
 }
