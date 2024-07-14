@@ -12,4 +12,6 @@ import { HighlightsComponent } from './highlights/highlights.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent { }
+export class AppComponent {
+  public bannerImagePath: string = '/assets/images/banner.png'
+}
