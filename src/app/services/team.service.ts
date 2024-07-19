@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { map } from "rxjs";
 
 import { environment } from "../../environments/environment";
-import { TeamMember } from "./team.interface";
+import { TeamMember } from "../models/team.interface";
 
 @Injectable({ providedIn: 'root' })
 export class TeamService {

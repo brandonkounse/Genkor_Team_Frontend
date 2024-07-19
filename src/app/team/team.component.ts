@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChildren, QueryList } from '@angular/
 import { NgFor, NgIf } from '@angular/common';
 import { Subscription } from 'rxjs';
 
-import { TeamService } from './team.service';
+import { TeamService } from '../services/team.service';
 import { PlayerComponent } from './player/player.component';
 
 @Component({

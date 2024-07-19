@@ -2,9 +2,9 @@
   <div><img class="header-logo" [src]="headerImagePath" alt="header logo"></div>
   <nav>
     <ul class="links-container">
-      <li>highlights</li>
-      <li>team</li>
-      <li>about</li>
+      <li><a (click)="scrollTo('highlights')">highlights</a></li>
+      <li><a (click)="scrollTo('team')">team</a></li>
+      <li><a (click)="scrollTo('about')">about</a></li>
     </ul>
   </nav>
 </div>

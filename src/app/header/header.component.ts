@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ScrollService } from '../services/scroll.service';
 
 @Component({
   selector: 'app-header',
@@ -9,4 +10,10 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   public headerImagePath: string = '../assets/images/header_logo.png'
+
+  constructor(private scrollService: ScrollService) { }
+
+  scrollTo(elementId: string): void {
+    this.scrollService.scrollTo(elementId);
+  }
 }

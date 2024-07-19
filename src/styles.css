@@ -37,4 +37,5 @@ a {
 a:hover {
   background-image: radial-gradient(ellipse, darkred, black);
   text-shadow: 1px 1px 1px black;
+  cursor: pointer;
 }
