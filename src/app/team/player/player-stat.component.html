@@ -1,0 +1,22 @@
+<div class="stats">
+  <div class="test">
+    <div class="stat">
+      <h4>Ranked Solo</h4>
+      <img [src]="rankedSoloIconPath" alt="">
+      <ul>
+        <li>{{ rankedSoloTierAndRank }}</li>
+        <li>Win Rate: {{ rankedSoloWinRate | percent }}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="test">
+    <div class="stat">
+      <h4>Ranked Flex</h4>
+      <img [src]="rankedFlexIconPath" alt="">
+      <ul>
+        <li>{{ rankedFlexTierAndRank }}</li>
+        <li>Win Rate: {{ rankedFlexWinRate | percent }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
