@@ -3,23 +3,24 @@ import { NgFor, NgIf } from '@angular/common';
 import { Subscription } from 'rxjs';
 
 import { TeamService } from '../services/team.service';
-import { PlayerComponent } from './player/player.component';
+import { PlayerStatComponent } from './player/player-stat.component';
 
 @Component({
   selector: 'app-team',
   standalone: true,
-  imports: [NgFor, NgIf, PlayerComponent],
+  imports: [NgFor, NgIf, PlayerStatComponent],
   templateUrl: './team.component.html',
   styleUrl: './team.component.css'
 })
 
 export class TeamComponent implements OnInit, OnDestroy {
-  @ViewChildren(PlayerComponent) playerComponents!: QueryList<PlayerComponent>;
+  @ViewChildren(PlayerStatComponent) playerComponents!: QueryList<PlayerStatComponent>;
   public teamMembers: any[] = [];
   public splashPaths: string[] = []
   public teamImagePath: string = '../../assets/images/the_team.png'
   public subscription: Subscription | null = null;
   public selectedPlayerIndex: number | null = null;
+  public currentPlayer: any;
 
   constructor(public teamService: TeamService) { }
 
@@ -38,5 +39,6 @@ export class TeamComponent implements OnInit, OnDestroy {
 
   public onSplashClick(index: number): void {
     this.selectedPlayerIndex = this.selectedPlayerIndex === index ? null : index;
+    this.currentPlayer = this.teamMembers[index];
   }
 }

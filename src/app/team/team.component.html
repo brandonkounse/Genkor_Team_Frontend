@@ -4,7 +4,6 @@
     <ul class="player-card-container">
       <li *ngFor="let member of teamMembers; let i = index">
         <img [src]="member.splash" alt="{{member.splash}}" class="player-card" (click)="onSplashClick(i)">
-        <app-player *ngIf="selectedPlayerIndex === i" [player]="member"></app-player>
       </li>
     </ul>
   </ng-container>
