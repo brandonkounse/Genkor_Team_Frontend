@@ -1,5 +1,6 @@
 export interface TeamMember {
   name: string,
+  position: string,
   profile_info: {
     profile_icon_id: string,
     summoner_level: string,
