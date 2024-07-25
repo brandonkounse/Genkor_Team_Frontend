@@ -1,6 +1,8 @@
 .site-container {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
@@ -16,4 +18,17 @@
 footer {
   margin-top: 10rem;
   text-align: center;
+}
+
+/* RESPONSIVE CSS */
+
+@media screen and (max-width: 600px) {
+
+  .site-container {
+    width: 600px;
+  }
+
+  .nested-site-container {
+    width: 500px;
+  }
 }

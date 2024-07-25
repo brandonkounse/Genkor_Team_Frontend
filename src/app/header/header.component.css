@@ -1,5 +1,7 @@
 .header-container {
   display: flex;
+  flex: 1;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   margin: 0.8rem 6rem;
@@ -11,6 +13,8 @@
 
 .links-container {
   display: flex;
+  flex: 1;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 1em;
@@ -28,4 +32,20 @@ nav li:not(:last-child)::after {
 
 hr {
   border: 0.5px solid darkred;
+}
+
+/* RESPONSIVE CSS */
+
+@media screen and (max-width: 600px) {
+
+  .header-container,
+  .links-container {
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+  }
+
+  nav li:not(:last-child)::after {
+    content: none;
+  }
 }
