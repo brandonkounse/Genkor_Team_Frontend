@@ -1,7 +1,5 @@
 .header-container {
   display: flex;
-  flex: 1;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   margin: 0.8rem 6rem;
@@ -13,8 +11,6 @@
 
 .links-container {
   display: flex;
-  flex: 1;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 1em;
@@ -38,14 +34,12 @@ hr {
 
 @media screen and (max-width: 600px) {
 
-  .header-container,
-  .links-container {
-    flex-direction: column;
+  .header-container {
+    margin: 0.5rem 0.75rem 0 0.75rem;
     justify-content: center;
-    margin: 0;
   }
 
-  nav li:not(:last-child)::after {
-    content: none;
+  img.header-logo {
+    display: none;
   }
 }
