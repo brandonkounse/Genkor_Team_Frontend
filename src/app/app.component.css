@@ -13,11 +13,20 @@
   width: 1280px;
   max-width: 1280px;
   gap: 2rem;
+  margin-top: 7rem;
 }
 
 footer {
   margin-top: 10rem;
   text-align: center;
+  font-size: 1.4rem;
+}
+
+.fixed-header {
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  background-color: black;
 }
 
 /* RESPONSIVE CSS */
@@ -30,5 +39,6 @@ footer {
 
   .nested-site-container {
     width: 500px;
+    margin-top: 4rem;
   }
 }
