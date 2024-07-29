@@ -7,6 +7,15 @@ export class ScrollService {
   public scrollAction$ = this.scrollSubject.asObservable();
 
   public scrollTo(elementId: string) {
-    this.scrollSubject.next(elementId);
+    const element: HTMLElement | null = document.getElementById(elementId);
+    const header: HTMLElement | null = document.querySelector('.fixed-header');
+    const headerHeight: number = header?.clientHeight || 0;
+    const elementPosition: number = element?.getBoundingClientRect().top || 0;
+    const offsetPosition: number = elementPosition + window.scrollY - headerHeight;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth',
+    })
   }
 }
