@@ -21,11 +21,11 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.scrollService.scrollAction$.subscribe(elementId => {
       const element = document.getElementById(elementId);
-      if (element) {
-        element.scrollIntoView({
-          behavior: 'smooth', block: 'start'
-        });
-      }
+
+      element?.scrollIntoView({
+        behavior: 'smooth', block: 'start'
+      });
+
     });
   }
 }
