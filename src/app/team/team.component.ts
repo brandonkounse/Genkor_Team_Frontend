@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 
 import { TeamService } from '../services/team.service';
 import { PlayerStatComponent } from './player/player-stat.component';
+import { TeamMember } from '../models/team.interface';
 
 @Component({
   selector: 'app-team',
@@ -16,6 +17,7 @@ import { PlayerStatComponent } from './player/player-stat.component';
 export class TeamComponent implements OnInit, OnDestroy {
   @ViewChildren(PlayerStatComponent) playerComponents!: QueryList<PlayerStatComponent>;
   public teamMembers: any[] = [];
+  private positionOrder: string[] = ['top', 'jungle', 'mid', 'adc', 'support'];
   public splashPaths: string[] = []
   public teamImagePath: string = '../../assets/images/the_team.png'
   public subscription: Subscription | null = null;
@@ -26,7 +28,7 @@ export class TeamComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.teamService.getTeamMembers().subscribe({
-      next: (members) => this.teamMembers = members,
+      next: (members) => this.teamMembers = members.sort(this.sortByPosition),
       error: (e) => console.error('Error fetching team members: ', e)
     });
   }
@@ -40,5 +42,9 @@ export class TeamComponent implements OnInit, OnDestroy {
   public onSplashClick(index: number): void {
     this.selectedPlayerIndex = this.selectedPlayerIndex === index ? null : index;
     this.currentPlayer = this.teamMembers[index];
+  }
+
+  private sortByPosition = (a: TeamMember, b: TeamMember): number => {
+    return this.positionOrder.indexOf(a.position) - this.positionOrder.indexOf(b.position);
   }
 }
