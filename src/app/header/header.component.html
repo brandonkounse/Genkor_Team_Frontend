@@ -1,5 +1,7 @@
 <div class="header-container">
-  <div><img class="header-logo" [src]="headerImagePath" alt="header logo"></div>
+  <div>
+    <a (click)="scrollTo('nav')"><img class="header-logo" [src]="headerImagePath" alt="header logo"></a>
+  </div>
   <nav>
     <ul class="links-container">
       <li><a (click)="scrollTo('highlights')">highlights</a></li>
