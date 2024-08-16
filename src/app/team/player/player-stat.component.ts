@@ -15,7 +15,7 @@ const rankIconMapping: { [key: string]: string } = {
 }
 
 @Component({
-  selector: 'app-player',
+  selector: 'app-player-stat',
   standalone: true,
   imports: [NgIf, PercentPipe],
   templateUrl: './player-stat.component.html',
@@ -23,6 +23,7 @@ const rankIconMapping: { [key: string]: string } = {
 })
 export class PlayerStatComponent implements OnInit, OnChanges {
   @Input() player: any;
+  // public cardBackImagePath: string = ;
   // Solo Queue
   rankedSoloWinRate: number = 0;
   rankedSoloTierAndRank: string = '';

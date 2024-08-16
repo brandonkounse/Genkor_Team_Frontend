@@ -1,9 +1,17 @@
 <div class="team-container">
-  <img [src]="teamImagePath" alt="">
+  <img [src]="teamImagePath" alt="Team Header Image">
   <ng-container *ngIf="teamMembers.length > 0">
     <ul class="player-card-container">
       <li *ngFor="let member of teamMembers; let i = index">
-        <img [src]="member.splash" alt="{{member.splash}}" class="player-card" (click)="onSplashClick(i)">
+        <div class="card" [class.flipped]="isCardFlipped(i)" (click)="onCardClick(i)">
+          <div class="card-front">
+            <img [src]="member.splash" alt="Front of player card">
+          </div>
+          <div class="card-back">
+            <!-- <img [src]="cardBackImagePath" alt="Back of player card"> -->
+            <app-player-stat [player]="member"></app-player-stat>
+          </div>
+        </div>
       </li>
     </ul>
   </ng-container>

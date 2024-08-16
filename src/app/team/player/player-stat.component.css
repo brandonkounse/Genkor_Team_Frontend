@@ -1,0 +1,10 @@
+.card-back {
+  background-image: url('../../../assets/images/player_card_back.png');
+  /* top: 0;
+  left: 0; */
+  background-size: cover;
+  background-position: center;
+  ;
+  width: 250px;
+  height: 100%;
+}
