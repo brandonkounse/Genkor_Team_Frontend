@@ -1,10 +1,31 @@
 .card-back {
   background-image: url('../../../assets/images/player_card_back.png');
-  /* top: 0;
-  left: 0; */
   background-size: cover;
   background-position: center;
-  ;
   width: 250px;
   height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+}
+
+.stats-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  width: 175px;
+  height: auto;
+}
+
+ul {
+  font-size: 1.2rem;
 }

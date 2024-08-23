@@ -9,6 +9,7 @@
 
 .player-card-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   gap: 1rem;
 }
@@ -59,19 +60,5 @@
     transform: scale(1.1);
     transition: all 600ms ease;
     cursor: pointer;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .player-card-container {
-    flex-wrap: wrap;
-    flex-basis: 50%;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .player-card-container {
-    flex-wrap: wrap;
-    flex-basis: 100%;
   }
 }

@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0.8rem 6rem;
+  margin: 0.8rem 2rem;
 }
 
 .header-logo {
@@ -35,11 +35,19 @@ hr {
 @media screen and (max-width: 600px) {
 
   .header-container {
-    margin: 0.5rem 0.75rem 0 0.75rem;
+    margin: 0.5rem 0.75rem;
     justify-content: center;
   }
 
   img.header-logo {
     display: none;
+  }
+}
+
+@media screen and (max-width: 710px) {
+
+  .header-container {
+    margin-left: 2rem;
+    margin-right: 2rem;
   }
 }

@@ -1,1 +1,12 @@
-<div class="card-back"></div>
+<div class="card-back">
+  <div class="container">
+    <div>
+      <img [src]="highestRankIconPath" alt="Highest Rank Picture" class="icon">
+      <ul class="stats-container">
+        <li>Highest Rank</li>
+        <li>{{highestTierAndRank[0]}} {{highestTierAndRank[1]}}</li>
+        <li>Win Rate: {{ rankedSoloWinRate | percent: '1.2' }}</li>
+      </ul>
+    </div>
+  </div>
+</div>

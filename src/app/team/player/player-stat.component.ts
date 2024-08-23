@@ -14,6 +14,8 @@ const rankIconMapping: { [key: string]: string } = {
   'CHALLENGER': 'Rank=Challenger.png',
 }
 
+const tierOrder: string[] = ['IRON', 'BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'EMERALD', 'DIAMOND', 'MASTER', 'GRANDMASTER', 'CHALLENGER'];
+
 @Component({
   selector: 'app-player-stat',
   standalone: true,
@@ -23,15 +25,15 @@ const rankIconMapping: { [key: string]: string } = {
 })
 export class PlayerStatComponent implements OnInit, OnChanges {
   @Input() player: any;
-  // public cardBackImagePath: string = ;
   // Solo Queue
   rankedSoloWinRate: number = 0;
   rankedSoloTierAndRank: string = '';
-  rankedSoloIconPath: string = '';
   // Flex Queue
   rankedFlexWinRate: number = 0;
   rankedFlexTierAndRank: string = '';
-  rankedFlexIconPath: string = '';
+  // Highest Rank
+  highestTierAndRank: string[] = [];
+  highestRankIconPath: string = '';
 
   ngOnInit(): void {
     this.updatePlayerStats();
@@ -44,17 +46,31 @@ export class PlayerStatComponent implements OnInit, OnChanges {
   }
 
   private updatePlayerStats(): void {
-    this.rankedSoloWinRate = this.player.ranked_stats.RANKED_SOLO_5x5.wins / (this.player.ranked_stats.RANKED_SOLO_5x5.wins + this.player.ranked_stats.RANKED_SOLO_5x5.losses);
-    this.rankedSoloTierAndRank = `${this.player.ranked_stats.RANKED_SOLO_5x5.tier} ${this.player.ranked_stats.RANKED_SOLO_5x5.rank}`
-    this.rankedFlexWinRate = this.player.ranked_stats.RANKED_FLEX_SR.wins / (this.player.ranked_stats.RANKED_FLEX_SR.wins + this.player.ranked_stats.RANKED_FLEX_SR.losses);
-    this.rankedFlexTierAndRank = `${this.player.ranked_stats.RANKED_FLEX_SR.tier} ${this.player.ranked_stats.RANKED_FLEX_SR.rank}`
-    this.setRankedIcons();
+    const soloStats = this.player.ranked_stats.RANKED_SOLO_5x5;
+    const flexStats = this.player.ranked_stats.RANKED_FLEX_SR;
+
+    this.rankedSoloWinRate = soloStats.wins / (soloStats.wins + soloStats.losses);
+    this.rankedSoloTierAndRank = `${soloStats.tier} ${soloStats.rank}`
+    this.rankedFlexWinRate = flexStats.wins / (flexStats.wins + flexStats.losses);
+    this.rankedFlexTierAndRank = `${flexStats.tier} ${flexStats.rank}`
+    
+    this.setHighestTierAndRank();
   }
 
-  private setRankedIcons(): void {
-    const soloRank: string = this.player.ranked_stats.RANKED_SOLO_5x5.tier;
-    const flexRank: string = this.player.ranked_stats.RANKED_FLEX_SR.tier;
-    this.rankedSoloIconPath = `../../../assets/images/ranked_icons/${rankIconMapping[soloRank]}`
-    this.rankedFlexIconPath = `../../../assets/images/ranked_icons/${rankIconMapping[flexRank]}`
+  private setHighestTierAndRank(): void {
+    const [soloTierAndRank, flexTierAndRank] = this.getSoloAndFlexTierAndRank();
+    const tierIndex = 0;
+    const highestTier = tierOrder.indexOf(soloTierAndRank[tierIndex]) >= tierOrder.indexOf(flexTierAndRank[tierIndex]) ? soloTierAndRank : flexTierAndRank;
+
+    this.highestTierAndRank = highestTier;
+    this.highestRankIconPath = `../../../assets/images/ranked_icons/${rankIconMapping[highestTier[tierIndex]]}`;
+  }
+
+  private getSoloAndFlexTierAndRank(): string[][] {
+    const soloTier: string = this.player.ranked_stats.RANKED_SOLO_5x5.tier;
+    const flexTier: string = this.player.ranked_stats.RANKED_FLEX_SR.tier;
+    const soloRank: string = this.player.ranked_stats.RANKED_SOLO_5x5.rank;
+    const flexRank: string = this.player.ranked_stats.RANKED_FLEX_SR.rank;
+    return [[soloTier, soloRank], [flexTier, flexRank]];
   }
 }

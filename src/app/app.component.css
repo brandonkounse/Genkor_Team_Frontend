@@ -4,6 +4,8 @@
   flex: 1;
   flex-wrap: wrap;
   gap: 1rem;
+  max-width: 1800px;
+  margin: 0 auto;
 }
 
 .nested-site-container {
@@ -12,7 +14,7 @@
   align-self: center;
   width: 90%;
   gap: 2rem;
-  margin-top: 7rem;
+  margin: 7rem auto 0 auto;
   padding: 0 1.2rem;
 }
 
@@ -23,6 +25,7 @@ footer {
 }
 
 .fixed-header {
+  max-width: 1800px;
   position: fixed;
   width: 100%;
   z-index: 1000;
@@ -32,7 +35,6 @@ footer {
 /* RESPONSIVE CSS */
 
 @media screen and (max-width: 600px) {
-
   .site-container {
     width: 600px;
   }
