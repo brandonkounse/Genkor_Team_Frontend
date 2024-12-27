@@ -1,7 +1,8 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { NgIf, PercentPipe } from '@angular/common';
+import { PercentPipe } from '@angular/common';
 
 const rankIconMapping: { [key: string]: string } = {
+  'UNRANKED': 'Rank=Unranked.png',
   'IRON': 'Rank=Iron.png',
   'BRONZE': 'Rank=Bronze.png',
   'SILVER': 'Rank=Silver.png',
@@ -19,7 +20,7 @@ const tierOrder: string[] = ['IRON', 'BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'EM
 @Component({
   selector: 'app-player-stat',
   standalone: true,
-  imports: [NgIf, PercentPipe],
+  imports: [PercentPipe],
   templateUrl: './player-stat.component.html',
   styleUrl: './player-stat.component.css'
 })
@@ -46,15 +47,20 @@ export class PlayerStatComponent implements OnInit, OnChanges {
   }
 
   private updatePlayerStats(): void {
-    const soloStats = this.player.ranked_stats.RANKED_SOLO_5x5;
-    const flexStats = this.player.ranked_stats.RANKED_FLEX_SR;
-
-    this.rankedSoloWinRate = soloStats.wins / (soloStats.wins + soloStats.losses);
-    this.rankedSoloTierAndRank = `${soloStats.tier} ${soloStats.rank}`
-    this.rankedFlexWinRate = flexStats.wins / (flexStats.wins + flexStats.losses);
-    this.rankedFlexTierAndRank = `${flexStats.tier} ${flexStats.rank}`
-    
-    this.setHighestTierAndRank();
+    if (Object.keys(this.player.ranked_stats).length === 0) {
+      this.highestTierAndRank = ['UNRANKED', ''];
+      this.highestRankIconPath = `../../../assets/images/ranked_icons/${rankIconMapping['UNRANKED']}`;
+    } else {
+      const soloStats = this.player.ranked_stats.RANKED_SOLO_5x5;
+      const flexStats = this.player.ranked_stats.RANKED_FLEX_SR;
+  
+      this.rankedSoloWinRate = soloStats.wins / (soloStats.wins + soloStats.losses);
+      this.rankedSoloTierAndRank = `${soloStats.tier} ${soloStats.rank}`
+      this.rankedFlexWinRate = flexStats.wins / (flexStats.wins + flexStats.losses);
+      this.rankedFlexTierAndRank = `${flexStats.tier} ${flexStats.rank}`
+      
+      this.setHighestTierAndRank();
+    }
   }
 
   private setHighestTierAndRank(): void {
