@@ -42,8 +42,6 @@ export class TeamComponent implements OnInit, OnDestroy {
   }
 
   public onCardClick(index: number): void {
-    // this.selectedPlayerIndex = this.selectedPlayerIndex === index ? null : index;
-    // this.currentPlayer = this.teamMembers[index];
     if (this.flippedCards.has(index)) {
       this.flippedCards.delete(index);
     } else {
