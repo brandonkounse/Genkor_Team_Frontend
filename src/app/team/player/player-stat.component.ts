@@ -47,36 +47,45 @@ export class PlayerStatComponent implements OnInit, OnChanges {
   }
 
   private updatePlayerStats(): void {
-    if (Object.keys(this.player.ranked_stats).length === 0) {
+    if (!this.player || Object.keys(this.player.ranked_stats).length === 0) {
       this.highestTierAndRank = ['UNRANKED', ''];
       this.highestRankIconPath = `../../../assets/images/ranked_icons/${rankIconMapping['UNRANKED']}`;
-    } else {
-      const soloStats = this.player.ranked_stats.RANKED_SOLO_5x5;
-      const flexStats = this.player.ranked_stats.RANKED_FLEX_SR;
-  
+    } 
+    
+    const rankedStats = this.player.ranked_stats;
+
+    if (rankedStats.RANKED_SOLO_5x5) {
+      const soloStats = rankedStats.RANKED_SOLO_5x5;
+      this.rankedSoloTierAndRank = `${soloStats.tier} ${soloStats.rank}`;
       this.rankedSoloWinRate = soloStats.wins / (soloStats.wins + soloStats.losses);
-      this.rankedSoloTierAndRank = `${soloStats.tier} ${soloStats.rank}`
-      this.rankedFlexWinRate = flexStats.wins / (flexStats.wins + flexStats.losses);
-      this.rankedFlexTierAndRank = `${flexStats.tier} ${flexStats.rank}`
-      
-      this.setHighestTierAndRank();
+    } else {
+      this.rankedSoloTierAndRank = 'UNRANKED'
     }
+
+    if (rankedStats.RANKED_FLEX_SR) {
+      const flexStats = rankedStats.RANKED_FLEX_SR;
+      this.rankedFlexTierAndRank = `${flexStats.tier} ${flexStats.rank}`
+      this.rankedFlexWinRate = flexStats.wins / (flexStats.wins + flexStats.losses);
+    } else {
+      this.rankedFlexTierAndRank = 'UNRANKED'
+    }
+  
+    this.setHighestTierAndRank();
   }
 
   private setHighestTierAndRank(): void {
-    const [soloTierAndRank, flexTierAndRank] = this.getSoloAndFlexTierAndRank();
-    const tierIndex = 0;
-    const highestTier = tierOrder.indexOf(soloTierAndRank[tierIndex]) >= tierOrder.indexOf(flexTierAndRank[tierIndex]) ? soloTierAndRank : flexTierAndRank;
+    const soloTierAndRank = this.getTierAndRank('RANKED_SOLO_5x5');
+    const flexTierAndRank = this.getTierAndRank('RANKED_FLEX_SR');
+    const highestTier = tierOrder.indexOf(soloTierAndRank[0]) >= tierOrder.indexOf(flexTierAndRank[0]) ? soloTierAndRank : flexTierAndRank;
 
     this.highestTierAndRank = highestTier;
-    this.highestRankIconPath = `../../../assets/images/ranked_icons/${rankIconMapping[highestTier[tierIndex]]}`;
+    this.highestRankIconPath = `../../../assets/images/ranked_icons/${rankIconMapping[highestTier[0]]}`;
   }
 
-  private getSoloAndFlexTierAndRank(): string[][] {
-    const soloTier: string = this.player.ranked_stats.RANKED_SOLO_5x5.tier;
-    const flexTier: string = this.player.ranked_stats.RANKED_FLEX_SR.tier;
-    const soloRank: string = this.player.ranked_stats.RANKED_SOLO_5x5.rank;
-    const flexRank: string = this.player.ranked_stats.RANKED_FLEX_SR.rank;
-    return [[soloTier, soloRank], [flexTier, flexRank]];
+  private getTierAndRank(queueType: string): string[] {
+    const stats = this.player.ranked_stats[queueType];
+    if (!stats) return ['UNRANKED', ''];
+
+    return [stats.tier, stats.rank];
   }
 }
