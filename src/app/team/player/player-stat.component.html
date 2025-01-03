@@ -5,8 +5,8 @@
       <ul class="stats-container">
         <li>Highest Rank</li>
         <li>{{highestTierAndRank[0]}} {{highestTierAndRank[1]}}</li>
-        @if (rankedSoloWinRate > 0) {
-          <li>Win Rate: {{ rankedSoloWinRate | percent: '1.2' }}</li>
+        @if (highestWinRate > 0) {
+          <li>Win Rate: {{ highestWinRate | percent: '1.2' }}</li>
         } @else {
           <li>Win Rate: N/A</li>
         }
