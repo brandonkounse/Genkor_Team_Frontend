@@ -35,6 +35,7 @@ export class PlayerStatComponent implements OnInit, OnChanges {
   // Highest Rank
   highestTierAndRank: string[] = [];
   highestRankIconPath: string = '';
+  highestWinRate: number = 0;
 
   ngOnInit(): void {
     this.updatePlayerStats();
@@ -71,6 +72,7 @@ export class PlayerStatComponent implements OnInit, OnChanges {
     }
   
     this.setHighestTierAndRank();
+    this.setHighestWinRate();
   }
 
   private setHighestTierAndRank(): void {
@@ -87,5 +89,9 @@ export class PlayerStatComponent implements OnInit, OnChanges {
     if (!stats) return ['UNRANKED', ''];
 
     return [stats.tier, stats.rank];
+  }
+
+  private setHighestWinRate() {
+    this.highestWinRate = this.rankedSoloWinRate > this.rankedFlexWinRate ? this.rankedSoloWinRate : this.rankedFlexWinRate;
   }
 }
